@@ -1,0 +1,897 @@
+// Import von Variablen des Sass-File
+@import "colors"
+@import "layout"
+
+// Laden der Webfonts
+// *Direkt im HTML
+
+/*******************/
+/** Allgemeine CSS Sytyling **/
+/*******************/
+
+html, body
+
+  // ganzes Browserfenster ausfüllen
+  width: 100vw
+  // height: 100vh --> Führt zu Fehler...
+  margin: 0
+  padding: 0
+
+  // Wichtig: So wird der Scroll-Bar in der Seitenbreite eingerechnet,
+  // d.h. der Abstand vom Text zum Seitenrand (exkl. Scroll-Bar) ist auf
+  // beiden Seiten gleich gross.
+  overflow-x: hidden
+
+  // Schriftgrösse als Default
+  font-size: $font-size
+
+  // Smooth Scroll
+  scroll-behavior: smooth
+
+
+body
+  // Schriftart, Farbe und Grösse (inkl. Zeilenabstand)
+  color: $c-text
+  font-family: $font-family
+  line-height: $optimal-line-heigth
+
+  // iOS App Einstellungen
+  // Keine Optionen für Links
+  -webkit-touch-callout: none
+
+p
+  color: $c-text
+  font-size: 1rem
+
+  // Abstände
+  margin-top: 0
+
+a
+  // Links sind nie Unterstrichen
+  text-decoration: none
+  // Links sind grün
+  color: $c-green
+  // Links sind Fettgedruckt
+  font-weight: 500
+
+// Aufzählungen sind nicht eingerückt
+ul
+  padding-left: 20px
+
+button
+  // Buttons haben keinen Rahmen, wenn selektiert
+  outline: none
+  color: $c-text
+  background-color: white
+  border: 2px solid $c-text
+  //font-family: Roboto
+  font-family: $font-family
+
+  font-size: 1rem
+  padding: 16px 30px 16px 20px
+  margin: 2px 0
+
+  // Animation für den Hover-Effekt
+  transition: all 75ms $defaultAnimationCurve
+
+button:hover
+  background-color: $c-text
+  color: white
+  transition: all 25ms $defaultAnimationCurve
+
+// noStyle-Elemente haben keinen Einfluss auf das Layout
+.noStyle
+  display: contents
+
+// Horizontaler Abtrenner (Strich), z.B. für im Menu
+hr
+  border-top: 0px solid rgba(0,0,0,0.12)
+  margin: 18px 0
+
+// Seitenlink (zh11.ch/...#LINK)
+.anchor
+    display: block
+    position: relative
+    top: -100px
+    visibility: hidden
+
+/** Überschriften **/
+#pageT
+  font-size: $pageTitle-font-size
+  letter-spacing: $h1-3-spreading
+  font-weight: 500
+
+  // Farben
+  color: $c-green
+
+  // Abstände
+  margin: 30px 0
+
+h1
+  font-size: $h1-font-size
+  letter-spacing: $h1-3-spreading
+  line-height: $h-line-heigth
+  font-weight: 400
+
+  color: $h-color
+
+  // Abstände
+  margin-bottom: 60px
+  max-width: 18em
+
+h2
+  font-size: $h2-font-size
+  letter-spacing: $h1-3-spreading
+  line-height: $h-line-heigth
+  font-weight: 500
+
+  color: $h-color
+
+  // Abstände
+  margin-top: 60px
+  margin-bottom: 10px
+
+h3
+  font-size: $h3-font-size
+  letter-spacing: $h1-3-spreading
+  line-height: $h-line-heigth
+  font-weight: 500
+
+  color: $h-color
+
+  // Abstände
+  margin-top: 25px
+  margin-bottom: 5px
+
+h4
+  font-weight: 500
+  color: $c-text
+  font-size: 1rem
+
+  // Abstände
+  margin-top: 17px
+  margin-bottom: 5px
+
+/*******************/
+/** Seiteneinteilung **/
+/*******************/
+
+body
+  // Der Body füllt das gesamte Brwoserfenster aus (Breite)
+  width: 100%
+  min-height: 100vh
+
+  // Scrollen in x-Richtung wird unterdrückt
+  overflow-x: hidden
+
+  // Grobes Stylen der Webseite mit CSS-Grid
+  display: grid
+  grid-template-columns: auto
+  grid-template-rows: $headerHeigth auto $footerHeigth
+  grid-template-areas:  "header" "content" "footer"
+
+// Header
+header
+  // Der Header wird fixiert
+  grid-area: header
+  position: fixed
+  width: 100%
+  height: $headerHeigth
+
+  // immer zuoberst
+  z-index: 99
+
+  // springt nicht mehr herum
+  -webkit-transform: translateZ(0)
+
+// Main Content
+main
+  padding: 0 20px 0 20px
+  grid-area: content
+  width: auto
+  max-width: $max-content-width
+  margin: 0 auto 0 auto
+
+// Footer
+footer
+  grid-area: footer
+  height: $footerHeigth
+  max-width: 100%
+
+/*******************/
+/** Header **/
+/*******************/
+header
+  // Farben
+  background: $c-header
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+  .menu
+    // Position
+    position: fixed
+    left: 0
+    top: 0
+    margin: 0
+    padding-top: 18px
+
+    // Grösse
+    height: 100vh
+    width: 280px
+
+    background-color: $c-background
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.2)
+
+    ul
+      padding: 0
+      list-style: none
+      width: 280px
+
+    li
+      display: flex
+
+      a
+        padding: 10px 12px
+        color: rgba(0,0,0,0.87)
+        width: 100%
+
+    li:hover
+      background-color: $c-gray
+
+    .current
+      background-color: $c-gray
+
+    a
+      color: $c-green
+
+    .important a
+      color: $c-red
+
+    .nav-child
+      display: none
+
+/* Icon-Text */
+.iconText
+  display: grid
+  grid-template-columns: 70px auto
+  grid-template-rows: 35px 15px
+  grid-template-areas:  "logo logoName" "logo logoSubname"
+  padding: 7px 0 7px 0
+
+.logoName
+  font-size: 1.3rem
+  line-height: 35px
+  font-weight: 500
+  color: $logoName-color
+  grid-area: logoName
+
+.logoSubname
+  font-size: 0.7rem
+  line-height: 15px
+  grid-area: logoSubname
+
+.logo
+  margin: 10px 19px 10px 21px
+  grid-area: logo
+
+// Navigation
+#mainMD
+  left: -290px
+  transition: all 200ms $defaultAnimationCurve
+  overflow: hidden
+
+// Für die Menu Animation -> Einblenden
+.showMenu
+  left: 0 !important
+  transition: all 250ms cubic-bezier(0.0, 0.0, 0.2, 1) !important
+
+#mainM
+  padding: 10px 23.75px 10px 16.25px
+
+#loader
+    padding: 8px
+    position: absolute
+    left: 50%
+    top: 42px
+    margin: -19px 0 0 -20px
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)
+    border-radius: 24px
+    background-color: white
+    z-index: 1000
+
+    div
+      border: 4px solid white
+      border-radius: 50%
+      border-top: 4px solid #3498db
+      width: 16px
+      height: 16px
+      -webkit-animation: spin 2s linear infinite
+      animation: spin 2s linear infinite
+      background-color: white
+
+      // Animation für Menu
+      @keyframes spin
+        0%
+          transform: rotate(0deg)
+        100%
+          transform: rotate(360deg)
+
+/*******************/
+/** Main **/
+/*******************/
+
+main
+  background: $c-background
+
+  img
+    width: 100%
+    height: auto
+    display: block
+
+article
+  margin: 60px 0
+
+// Für (YouTube-)Videos in korrekter Grösse
+.videoContainer
+  position: relative
+  padding-bottom: 56.25%
+  padding-top: 30px
+  height: 0
+  overflow: hidden
+
+  iframe
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+// Bilder, Karten, Kontaktformulare
+figure
+  box-shadow: $defaultShadow
+  margin: 0 -20px
+  overflow: hidden
+  position: relative
+  margin-bottom: 20px
+  margin-top: 20px
+
+  button
+    height: 56px
+    width: 56px
+    background-color: rgba(66,66,66,0.54)
+    border-radius: 56px
+    border: none
+    padding: 0
+
+    position: absolute
+    //display: none
+
+  svg
+    margin-top: 7.5px
+
+  .path
+    fill: white
+
+  img
+    display: none
+
+  img:first-child
+    display: block
+
+  .blur
+    filter: blur(8px)
+
+// Beschroftungen
+figcaption
+  font-size: $font-size-smal
+  padding: 15px
+
+.left
+  top: calc( 50% - 28px)
+  left: 10px
+
+.right
+  top: calc( 50% - 28px)
+  right: 10px
+
+.box
+  box-shadow: $defaultShadow
+  outline: none
+  border: none
+  overflow: hidden
+  width: 100%
+  height: 450px
+  padding: 20px
+  margin: 20px -20px
+  overflow: hidden
+
+#full_screen_contact
+  position: fixed
+  background-color: white
+  width: 100%
+  height: calc(100% - 50px)
+  left: 0
+  top: 50px
+  overflow-y: scroll
+
+  #kontaktformular
+    margin: 75px auto !important
+
+
+/* Regelt die Darstellung der Eingabeforms */
+form
+
+  // Darstellung untereinander mit Grid
+  display: grid
+  // Mobile First: Ganze Bildschrimbreite
+  margin: 20px -20px
+  // Formularfelder aber im normalen Abstand zum Rand
+  padding: 20px
+  // Schatten des Formulars, wie bei den Bildern
+  box-shadow: $defaultShadow
+
+  background-color: white
+
+  h4
+    margin: 0
+  p
+    font-size: $font-size-smal
+    max-width: 450px
+    line-height: 1.5em
+
+  .g-recaptcha
+    margin: 20px 0
+
+input, textarea
+  padding: 32px 30px 18px 20px
+  background-color:  rgba(0, 0, 0, 0.03)
+  border: none
+  margin: 2px 0
+  border-radius: 0
+  color: $c-text
+  outline: none
+  letter-spacing: normal
+  //font-family: Roboto
+  font-family: $font-family
+
+  // Animation
+  transition: background 75ms $defaultAnimationCurve
+  transition: padding 75ms $defaultAnimationCurve
+
+input:hover, textarea:hover
+  background-color:  rgba(0, 0, 0, 0.07)
+
+input:focus, textarea:focus
+  background-color: rgba(0, 0, 0, 0.08)
+
+input:placeholder-shown, textarea:placeholder-shown
+  padding: 25px 30px 25px 20px
+  transition: padding 25ms $defaultAnimationCurve
+
+input[type=checkbox]
+  position: relative
+  cursor: pointer
+  visibility: hidden
+  width: 20px
+  height: 20px
+  overflow: hidden
+  margin-right: 5px
+
+input[type=checkbox]:before
+  content: ""
+  display: block
+  position: absolute
+  width: 16px
+  height: 16px
+  top: 0
+  left: 0
+  border: 2px solid $c-text
+  border-radius: 3px
+  background-color: white
+  margin: 0
+  visibility: visible
+
+input[type=checkbox]:checked:after
+  content: ""
+  display: block
+  width: 5px
+  height: 10px
+  border: solid $c-green
+  border-width: 0 2px 2px 0
+  -webkit-transform: rotate(45deg)
+  -ms-transform: rotate(45deg)
+  transform: rotate(45deg)
+  position: absolute
+  top: 2px
+  left: 6px
+  visibility: visible
+
+textarea
+  resize: none
+  height: 200px
+
+textarea::-webkit-scrollbar
+  width: 2px
+textarea::-webkit-scrollbar-thumb
+  background-color: darkgrey
+
+label
+  padding-left: 10px
+  font-size: 0.6rem
+  line-height: 0.6rem
+  height: 0.6rem
+  margin-top: -58px
+
+textarea ~ label
+  margin-top: -240px
+
+input:placeholder-shown+ label, textarea:placeholder-shown + label
+  display: none
+  transition: display 75ms $defaultAnimationCurve
+
+input:invalid + label, textarea:invalid + label
+  color: $c-red
+
+input:valid + label, textarea:valid + label
+  color: $c-green
+
+// Für die Links mit den kleinen Bilder (z.B. bei den Stufen)
+.cards
+  display: grid
+  grid-template-columns: 100%
+
+.card
+    box-shadow: $defaultShadow
+    transition: all 30ms $defaultAnimationCurve
+    overflow: hidden
+    margin: 5px
+
+.portrait
+  .cardDescription
+    text-align: center
+
+  img
+    width: 85%
+    height: auto
+    display: block
+    border-radius: 50%
+    margin: 7.5% auto
+    transition: all 200ms $defaultAnimationCurve
+    transition: border-radius 215ms $defaultAnimationCurve
+
+
+  img:hover
+    border-radius: 0
+    margin: 0
+    width: 100%
+
+.card:hover
+  box-shadow: $defaultShadow_Hover
+
+.cardDescription
+    padding: 12px 16px
+    font-weight: normal
+
+
+#pushalert-ticker, .pushalert-notification-info, #pa_class-blocked-info
+  display: none !important
+
+
+// Downlaod && Kalender
+.dload:hover
+  box-shadow: $defaultShadow_Hover
+
+.dload
+  width: 100%
+  height: 40px
+  display: grid
+  grid-template-areas: 'icon title'  'icon description'
+  grid-template-columns: 60px calc(100% - 60px)
+  grid-template-rows:  28px 12px
+  padding: 10px 0
+  margin: 10px 0
+  box-shadow: $defaultShadow
+
+  h3
+    grid-area: title
+    margin: 0
+    padding: 0
+    font-size: 1.2rem
+    color: $c-text
+
+  p
+    grid-area: description
+    margin: 0
+    padding: 0
+    font-size: 10px
+    line-height: 8px
+
+  .icon
+    background-color: #163d77
+    height: 45px
+    margin-top: -5px
+    border-radius: 25px
+    width: 50px
+    margin-left: 9px
+    grid-area: icon
+    padding-top: 6px
+
+  .day
+    font-size: 24px
+    font-weight: 600
+    color: $c-green
+    text-align: center
+    line-height: 26px
+
+  .month
+    text-align: center
+    font-size: 11px
+    color: $c-green
+
+  .title, .desc
+    margin-left: 10px
+
+
+
+.pdfIcon
+  height: 40px
+  width: 40px
+  grid-area: icon
+  margin: 0 5px
+  background-image: url('https://zh11.ch/templates/zh11/res/icons/pdf.svg')
+
+.xlsIcon
+  height: 40px
+  width: 40px
+  grid-area: icon
+  margin: 0 5px
+  background-image: url('https://zh11.ch/templates/zh11/res/icons/xlsx.svg')
+
+
+//###############
+//############### Bis hier korrigiert von Unten an...
+//###############
+//###############
+
+/*******************/
+// *Footer*
+// Sämtliche Stylangaben für den Footer
+/*******************/
+footer
+  background: $c-blue
+
+  // Footer Navigation
+  .menu
+    margin: 70px 20px 0 20px
+    padding: 0
+
+    // entfehrnt die Aufzählungszeichen
+    list-style: none
+
+    // Flex Box (für die Einmittung)
+    display: flex
+    justify-content: center
+
+    li
+      margin: 10px 25px
+
+    a
+      color: #96bf10
+      font-size: $footer-font-size
+
+// Social Medias
+.socials
+  margin: 20px 20px 0 20px
+
+  // Flex Box (für die Einmittung)
+  display: flex
+  justify-content: center
+
+  // genereller Style der Link-Bilder
+  a
+    margin: 10px
+    height: 26px
+    width: 26px
+    background-image: url(../res/icons/socials.svg)
+
+
+// Style für das Facebook-Icon
+#face
+  background-position: -54px 0
+
+// Style für das Twitter-Icon
+#twit
+  background-position: 0
+
+// Style für das Twitter-Icon
+#pint
+  background-position: -27px 0
+
+// Style für das Instagram-Icon
+#insta
+  background-position: -81px 0
+
+// Copyright-Text
+#copyright
+  text-align: center
+  margin: 120px 20px 60px 20px
+
+  p
+    color: #314665
+    font-size: $footer-font-size
+    line-height: 2.2em
+
+  a
+    color: #314665
+
+/******************************************************
+// Change Layout on bigger Screens
+/******************************************************
+
+@media only screen and (min-width: 400px)
+
+  .cards
+    grid-template-columns: 50% 50%
+
+
+
+// Stylt den Scroll-Bar
+@media only screen and (max-height: 560px)
+  #mainMD
+    overflow-y: scroll
+  #mainMD::-webkit-scrollbar
+      width: 2px
+  #mainMD::-webkit-scrollbar-thumb
+    background-color: darkgrey
+
+
+@media only screen and (min-width: $width-newStyle)
+
+  .cards
+    grid-template-columns: 33% 33% 33%
+
+
+  // Ab einer gewissen Fenster-Höhe wird der Abstand
+  // vom Main-Content nach oben vergrössert.
+  @media only screen and (min-height: 750px)
+    main
+      margin-top: 10vh
+
+  img
+    max-width: $width-newStyle
+
+  figure
+    margin-left: 0
+    margin-right: 0
+
+
+
+
+  // Darstellung PC
+  form
+    max-width: $width-newStyle
+    margin: 20px 0
+
+
+
+
+  .box
+    margin-left: 0
+    margin-right: 0
+    max-width: 660px
+    width: calc(100% - 40px)
+
+// Hintergrundbild mit dem Cevi Züri 11 Footer,
+// das Bild wird erst ab einer minimalen Breite sichtbar.
+@media only screen and (min-width: 880px)
+
+  footer
+    background-image: url(../res/logos/tannennadeln_web.svg)
+    background-size: 450px
+    background-repeat: no-repeat
+    background-position-y: 75px
+
+// Diverse Layoutanpassungen für breite Bildschirme
+@media only screen and (min-width: 1200px)
+
+  .dload
+    max-width: 350px
+    float: left
+    margin: 10px 8px
+
+
+  // Float nebeneinander
+  .docs
+    display: inline-block
+    display: flow-root
+
+  main
+    max-width: 760px
+    margin-left: 17.5%
+    img
+      max-width: 760px
+      width: 100%
+  .box
+    max-width: 720px
+
+  form
+    max-width: 760px
+
+// Ab einer gewissen Berite wechselt das Menu
+// nach oben Rechts in die Kopfzeile
+@media only screen and (min-width: 1200px)
+
+  header
+    width: 100%
+    display: grid
+    grid-template-columns: 250px auto
+    grid-template-areas: "logo menu"
+
+  #mainM
+    display: none
+    grid-area: menu
+
+  .showMenu, #mainMD
+    transition: none !important
+
+  #mainMD
+    // Edge Fallback:
+    right: 0px
+    display: block
+    margin: 0 !important
+    position: fixed
+    padding: 0
+    box-shadow: none
+    height: 50px
+    width: auto
+    left: auto !important
+
+    // Für alle andern Browser
+    all: unset
+
+
+  .iconText
+    display: none
+
+  .logo
+    grid-area: logo
+
+  // Edge
+  .noStyle
+    grid-area: logo
+
+
+  #headerTitle
+    grid-area: logo
+    margin-left: 70px
+
+  header hr
+      display: none
+
+  header .menu ul
+    display: flex
+    width: auto
+    margin: 0
+    margin-right: 20px
+
+    li
+      line-height: 27px
+    a
+      font-weight: 400
+      color: rgba(0,0,0,.54)
+      font-size: 0.9rem
+
+    li:hover
+      background-color: initial
+      a
+        font-weight: 500
+        color: black
+
+    .current a
+      background-color: white
+      font-weight: 500
+      border-bottom: 2px solid #0277bd
+      color: black

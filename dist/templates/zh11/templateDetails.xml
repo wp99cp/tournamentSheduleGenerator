@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+
+<extension version="2018.10.14" type="template" client="site">
+	<name>zh11</name>
+	<creationDate>october 2018</creationDate>
+	<author>Cyrill Puentener</author>
+	<authorEmail>jpg@zh11.ch</authorEmail>
+	<authorUrl></authorUrl>
+	<copyright>Copyright (C) 2016 - 2019</copyright>
+	<license>None</license>
+	<version>2019.01.07</version>
+	<description>Das offizielle Design der Webseite vom Cevi Züri 11.</description>
+
+	<files>
+		<folder>res</folder>
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>html</folder>
+
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_thumbnail.png</filename>
+		<filename>manifest.json</filename>
+
+	</files>
+
+	<positions>
+
+		<position>navigation</position>
+		<position>article</position>
+		<position>footer_navigation</position>
+
+	</positions>
+
+</extension>

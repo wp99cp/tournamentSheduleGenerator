@@ -1,0 +1,19 @@
+{
+    "short_name": "Cevi Züri 11",
+    "name": "Cevi Züri 11",
+    "display": "standalone",
+    "start_url": "/?utm_source=homescreen",
+    "icons": [{
+        "src": "/templates/zh11/res/logos/logo.svg",
+        "type": "image/svg",
+        "sizes": "any"
+    }, {
+        "src": "/templates/zh11/res/logos/logo_192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+    }],
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#fff",
+    "gcm_sender_id": "539876079581"
+}
